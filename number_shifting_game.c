@@ -14,7 +14,7 @@ void rightKey(int [4][4], int [2]);
 
 int main() {
     char player[30];
-    int move, ch, pos[2], arr[4][4] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ' '};
+    int move, ch, pos[2], arr[4][4] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ' '};
 
     printf("Enter Player Name: ");
     scanf("%[^\n]s", player);
