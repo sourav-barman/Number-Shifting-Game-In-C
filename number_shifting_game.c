@@ -14,12 +14,7 @@ void rightKey(int [4][4], int [2]);
 
 int main() {
     char player[30];
-    int move, ch, pos[2], arr[4][4];
-    
-    /* Initialization */
-    move = 500;
-    pos[0] = 3, pos[1] = 3;
-    initializeArray(*arr);
+    int move, ch, pos[2], arr[4][4] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ' '};
 
     printf("Enter Player Name: ");
     scanf("%[^\n]s", player);
@@ -45,6 +40,11 @@ int main() {
     getch();
 
     do {
+        /* Initialization */
+        move = 500;
+        pos[0] = 3, pos[1] = 3;
+        initializeArray(*arr);
+
         /* Shuffling the array */
         shuffle(*arr);
 
@@ -71,14 +71,14 @@ int main() {
                         case 77: // Right key
                             rightKey(arr, pos);
                     }
-                    break;
+                    break;                    
                 case 'e':
                 case 'E':
                     exit(0);
-                    break;
             } 
             move--;
 
+            /* Check for win */
             if (isSorted(*arr)) {
                 system("cls");
                 display(arr);
@@ -86,6 +86,7 @@ int main() {
                 break;
             }
 
+            /* Check for move expiry */
             if (move == 0) {
                 system("cls");
                 printf("\n\tOops ! You Lost.\n\n");
@@ -94,12 +95,7 @@ int main() {
 
         } while(1);
 
-        /* Initialization */
-        move = 500;
-        pos[0] = 3, pos[1] = 3;
-        initializeArray(*arr);
-
-        printf("Press 'y' to play again else press any key to stop.... ");
+        printf("Press 'y' to play again else press any other key to stop.... ");
         ch = getch();        
         
     } while(ch == 'y' || ch == 'Y');
