@@ -3,6 +3,15 @@
 #include <conio.h>  // For getch()
 #include <time.h>   // For time()
 
+#define RED     "\x1B[31m"
+#define GREEN   "\x1B[32m"
+#define YELLOW  "\x1B[33m"
+#define BLUE    "\x1B[34m"
+#define MAGENTA "\x1B[35m"
+#define CYAN    "\x1B[36m"
+#define WHITE   "\x1B[37m"
+#define RESET   "\x1B[0m"
+
 void shuffle(int *);
 int isSorted(int *);
 void initializeArray(int *);
@@ -20,21 +29,21 @@ int main() {
     scanf("%[^\n]s", player);
     system("cls");
 
-    printf("\n\t\t:NUMBER SHIFTING GAME:\n");
-    printf("\n\t\t   RULE OF THE GAME\n");
-    printf("\n1. You can move only 1 step at a time with the arrow key.");
+    printf(CYAN "\n\t\t:NUMBER SHIFTING GAME:\n" RESET);
+    printf(YELLOW "\n\t\t   RULE OF THE GAME\n" RESET);
+    printf(RED "\n1. You can move only 1 step at a time with the arrow key." RESET);
     printf("\n\tMove Up    : By Up Arrow Key");
     printf("\n\tMove Down  : By Down Arrow Key");
     printf("\n\tMove Left  : By Left Arrow Key");
     printf("\n\tMove Right : By Right Arrow Key");
-    printf("\n\n2. You can move numbers at an empty position only.");
-    printf("\n\n3. For each valid move : your total number of moves will be decrease by 1.");
-    printf("\n\n4. Number in a 4*4 matrix should be in order from 1 to 15");
-    printf("\n\t Winning Situation:");
+    printf(RED "\n\n2. You can move numbers at an empty position only." RESET);
+    printf(RED "\n\n3. For each valid move : your total number of moves will be decrease by 1." RESET);
+    printf(RED "\n\n4. Number in a 4*4 matrix should be in order from 1 to 15" RESET);
+    printf(YELLOW "\n\t Winning Situation:" RESET);
     display(arr);
-    printf("\n5. You can exit the game at any time by pressing 'E' or 'e'");
+    printf(RED "\n5. You can exit the game at any time by pressing 'E' or 'e'" RESET);
     printf("\n\tTry to win in minimum no. of moves");
-    printf("\n\n\t    Happy gaming , Good Luck");
+    printf(YELLOW "\n\n\t    Happy gaming , Good Luck" RESET);
     printf("\n\nEnter any key to start.....    ");
 
     getch();
@@ -50,6 +59,7 @@ int main() {
 
         do {
             system("cls");
+            printf(YELLOW "\n\t:NUMBER SHIFTING GAME:\n" RESET);
             printf("\nHello %s , Move remaining : %d\n", player, move);    
             display(arr);
 
@@ -81,15 +91,16 @@ int main() {
             /* Check for win */
             if (isSorted(*arr)) {
                 system("cls");
+                printf(YELLOW "\n\t:NUMBER SHIFTING GAME:\n" RESET);
                 display(arr);
-                printf("\n\tCongrats ! You Won.\n\n");
+                printf(YELLOW "\n\tCongrats ! You Won the Game.\n\n" RESET);
                 break;
             }
 
             /* Check for move expiry */
             if (move == 0) {
                 system("cls");
-                printf("\n\tOops ! You Lost.\n\n");
+                printf(YELLOW "\n\tOops ! You Lost the Game.\n\n" RESET);
                 break;
             }
 
@@ -137,17 +148,17 @@ void initializeArray(int *p) {
 void display(int arr[4][4]) {
     int i, j;
 
-    printf("\n\t---------------------\n\t|");
+    printf(CYAN "\n\t---------------------\n\t|" RESET);
     for(i=0; i<4; i++) {
         for(j=0; j<4; j++) {
             if (arr[i][j] == ' ')
-                printf(" %2c |", arr[i][j]);
+                printf(CYAN " %2c |" RESET, arr[i][j]);
             else 
-                printf(" %2d |", arr[i][j]);
+                printf(CYAN " %2d |" RESET, arr[i][j]);
         }
-        printf("\n\t|");
+        printf(CYAN "\n\t|" RESET);
     }
-    printf("\b---------------------\n");
+    printf(CYAN "\b---------------------\n" RESET);
 }
 
 void upKey(int arr[4][4], int pos[2]) {
